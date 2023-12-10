@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw1rfjvgg435a"]
+
+[ext_resource type="Script" path="res://Scripts/pipe.gd" id="1_gl5q1"]
+[ext_resource type="Texture2D" uid="uid://cew85ygmqskmx" path="res://Assets/Sprites/Pipes/pipe-green.png" id="1_nhbd3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n60c0"]
+size = Vector2(44, 478)
+
+[node name="Pipe" type="Area2D" groups=["on_crash_should_fall_through"]]
+script = ExtResource("1_gl5q1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nhbd3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n60c0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

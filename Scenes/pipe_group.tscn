@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dct06m3o35pxx"]
+
+[ext_resource type="PackedScene" uid="uid://cw1rfjvgg435a" path="res://Scenes/pipe.tscn" id="1_8euxg"]
+[ext_resource type="Script" path="res://Scripts/pipe_group.gd" id="1_ewbcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl408"]
+size = Vector2(6, 204)
+
+[node name="PipeGroup" type="Node2D" groups=["pipe_group"]]
+script = ExtResource("1_ewbcq")
+
+[node name="Pipe1" parent="." instance=ExtResource("1_8euxg")]
+position = Vector2(2.08165e-12, -300)
+rotation = 3.14159
+
+[node name="Pipe2" parent="." instance=ExtResource("1_8euxg")]
+position = Vector2(2.08165e-12, 300)
+
+[node name="ScoringArea" type="Area2D" parent="."]
+position = Vector2(29, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoringArea"]
+shape = SubResource("RectangleShape2D_fl408")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(2.6, 1)
+
+[connection signal="body_entered" from="ScoringArea" to="." method="_on_scoring_area_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
